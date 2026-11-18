@@ -38,8 +38,22 @@ app.get("/", (req, res) => {
 });
 
 mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
+    .then(async () => {
         console.log("MongoDB connected");
+
+        const projectExists = await Project.findOne({
+            title: "Result Portal"
+        });
+
+        if (!projectExists) {
+            await Project.create({
+                title: "Result Portal",
+                stack: "PHP, MySQL",
+                rating: 3
+            });
+
+            console.log("Result Portal added");
+        }
 
         app.listen(5000, () => {
             console.log("Server running on port 5000");
