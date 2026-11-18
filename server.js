@@ -9,11 +9,26 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/api/projects", (req, res) => {
-    res.json([
-        { name: "MERN Deployment Demo", technology: "MERN Stack" },
-        { name: "Portfolio App", technology: "React" }
-    ]);
+// Project Schema
+const projectSchema = new mongoose.Schema({
+    title: String,
+    stack: String,
+    rating: Number
+}, {
+    timestamps: true
+});
+
+// Project Model
+const Project = mongoose.model("Project", projectSchema);
+
+// Get projects from MongoDB
+app.get("/api/projects", async (req, res) => {
+    try {
+        const projects = await Project.find();
+        res.json(projects);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 app.use(express.static(path.join(__dirname, "client", "dist")));
