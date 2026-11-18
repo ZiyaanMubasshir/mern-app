@@ -5,7 +5,7 @@ function App() {
     <div>
       <h1>MERN Portfolio</h1>
 
-      <p>Experiment 12 - Cloud Deployment</p>
+      <p>MERN APP- Cloud Deployment</p>
 
       <hr />
 
@@ -20,12 +20,7 @@ function App() {
         <h3>Project 1</h3>
         <p>MERN Stack Portfolio</p>
       </div>
-
-      <div>
-        <h3>Project 2</h3>
-        <p>Online Travel Guide</p>
-      </div>
-
+      
       <h2>Contact</h2>
       <p>Email: student@example.com</p>
     </div>
